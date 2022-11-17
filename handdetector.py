@@ -37,6 +37,8 @@ mpHands = mp.solutions.hands
 hands = mpHands.Hands()
 mpDraw = mp.solutions.drawing_utils
 
+point = [ 4, 8, 12, 16, 20]
+
 
 while True:
     success, img = cam.read() #membuat keadaan ketika success terpenuhi akan membaca fungsi cam
@@ -59,7 +61,40 @@ while True:
                 lmList.append([titik, cx,cy])
                 
             if len(lmList) !=0:
-                print(lmList[1])
+                #print(lmList)
+                jari = []
+
+                if lmList[point[0]][1] > lmList[point[0]-1][1]:
+                    jari.append(1)
+                else :
+                    jari.append(0)
+
+                for titik in range (1,5):
+                    if lmList[point[titik]][2] < lmList[point[titik]-2][2]:
+                        jari.append(1)
+                    else :
+                        jari.append(0)
+                
+                jum = jari.count(1)
+
+                if jum == 0:
+                    print ("angka 0")
+                    cv2.putText(img, f'Angka 0', (50,100), cv2.FONT_HERSHEY_COMPLEX, 0.75, (255,122,22), 1) #(img, f'teks', (sb x, sb y), font, size, warna, thickness)
+                if jum == 1:
+                    print ("angka 1")
+                    cv2.putText(img, f'Angka 1', (50,100), cv2.FONT_HERSHEY_COMPLEX, 0.75, (255,122,22), 1) #(img, f'teks', (sb x, sb y), font, size, warna, thickness)
+                if jum == 2:
+                    print ("angka 2")
+                    cv2.putText(img, f'Angka 2', (50,100), cv2.FONT_HERSHEY_COMPLEX, 0.75, (255,122,22), 1) #(img, f'teks', (sb x, sb y), font, size, warna, thickness)
+                if jum == 3:
+                    print ("angka 3")
+                    cv2.putText(img, f'Angka 3', (50,100), cv2.FONT_HERSHEY_COMPLEX, 0.75, (255,122,22), 1) #(img, f'teks', (sb x, sb y), font, size, warna, thickness)
+                if jum == 4:
+                    print ("angka 4")
+                    cv2.putText(img, f'Angka 4', (50,100), cv2.FONT_HERSHEY_COMPLEX, 0.75, (255,122,22), 1) #(img, f'teks', (sb x, sb y), font, size, warna, thickness)
+                if jum == 5:
+                    print ("angka 5")
+                    cv2.putText(img, f'Angka 5', (50,100), cv2.FONT_HERSHEY_COMPLEX, 0.75, (255,122,22), 1) #(img, f'teks', (sb x, sb y), font, size, warna, thickness)
     
 
     #frame rate; ctime (waktu real); ptime(waktu terbarukan)
